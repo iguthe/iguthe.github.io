@@ -22,6 +22,7 @@
     width: auto;
     height: auto;
     background-size: cover;
+    pointer-events: none;
 }
 
 /* Estilo del contenido */
@@ -33,49 +34,50 @@
     text-align: center;
     color: white;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.7); /* Fondo translúcido para mejorar la legibilidad */
+    background: rgba(0, 0, 0, 0.7);
     border-radius: 8px;
-    max-width: 80%; /* Ajustar ancho máximo del contenedor */
-    width: 100%; /* Asegurar que el contenedor use todo el ancho disponible hasta el máximo permitido */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* Añadir sombra para contraste */
+    max-width: 80%;
+    width: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 /* Estilo del texto */
 h1 {
-    font-size: 1.2em; /* Tamaño más pequeño */
-    font-weight: 300; /* Fuente más delgada */
+    font-size: 1.2em;
+    font-weight: 300;
     margin-bottom: 10px;
 }
 
 p {
-    font-size: 0.9em; /* Tamaño más pequeño */
+    font-size: 0.9em;
     line-height: 1.4;
     margin-bottom: 20px;
-    font-weight: 300; /* Fuente más delgada */
+    font-weight: 300;
 }
 
 /* Ajustes específicos para dispositivos móviles */
 @media (max-width: 768px) {
     .content {
         padding: 10px;
-        max-width: 95%; /* Ajustar ancho máximo en pantallas pequeñas */
+        max-width: 95%;
     }
 
     h1 {
-        font-size: 1em; /* Tamaño del texto en dispositivos móviles */
+        font-size: 1em;
     }
 
     p {
-        font-size: 0.85em; /* Tamaño del texto en dispositivos móviles */
+        font-size: 0.85em;
     }
 }
 
 /* Ajustes para pantallas grandes */
 @media (min-width: 1200px) {
     .content {
-        max-width: 600px; /* Ancho máximo específico para pantallas grandes */
-        width: auto; /* Ajustar el ancho automáticamente */
+        max-width: 600px;
+        width: auto;
     }
 }
+
 
 
