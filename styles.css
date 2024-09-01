@@ -64,7 +64,7 @@ p {
 @media (max-width: 768px) {
     .content {
         padding: 10px;
-        max-width: 95%; /* Ajustar ancho máximo en pantallas pequeñas */
+        max-width: 50%; /* Ajustar ancho máximo en pantallas pequeñas */
     }
 
     h1 {
