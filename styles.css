@@ -32,36 +32,41 @@
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.5); /* Fondo translúcido para mejorar la legibilidad */
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.6); /* Fondo translúcido para mejorar la legibilidad */
     border-radius: 8px;
+    max-width: 90%; /* Ajustar ancho máximo del contenedor */
+    width: 100%;
 }
 
+/* Estilo del texto */
 h1 {
-    font-size: 2em;
-    margin-bottom: 10px;
+    font-size: 1.5em; /* Tamaño más pequeño para un estilo más minimalista */
+    font-weight: 300; /* Fuente más delgada */
+    margin-bottom: 8px;
 }
 
 p {
-    font-size: 1.2em;
-    line-height: 1.5;
-    margin-bottom: 20px;
+    font-size: 1em; /* Tamaño más pequeño para un estilo más minimalista */
+    line-height: 1.4;
+    margin-bottom: 15px;
+    font-weight: 300; /* Fuente más delgada */
 }
 
-/* Estilo del contenido - mejoras opcionales */
-.content {
-    background: rgba(0, 0, 0, 0.6); /* Ajustar opacidad para mejorar la legibilidad */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Añadir sombra para más contraste */
-}
-
-/* Ajustar el tamaño de fuente en dispositivos móviles */
+/* Ajustes específicos para dispositivos móviles */
 @media (max-width: 768px) {
+    .content {
+        padding: 10px; /* Ajustar padding en pantallas pequeñas */
+        max-width: 90%; /* Asegurar que el contenedor no sea demasiado ancho */
+    }
+
     h1 {
-        font-size: 1.5em;
+        font-size: 1.2em; /* Tamaño del texto en dispositivos móviles */
     }
 
     p {
-        font-size: 1em;
+        font-size: 0.9em; /* Tamaño del texto en dispositivos móviles */
     }
 }
+
 
