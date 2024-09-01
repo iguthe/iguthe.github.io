@@ -3,8 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nachflix</title>
+    <title>Tu Página Minimalista</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilo para evitar interacción con el video */
+        #bg-video {
+            pointer-events: none; /* Desactiva la interacción del puntero con el video */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Estilo inicial para el contenido */
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            max-width: 80%;
+            width: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+            opacity: 0; /* Inicialmente oculto */
+            transition: opacity 2s ease-in-out; /* Efecto de disolver */
+        }
+
+        /* Animación cuando el contenido aparece */
+        .content.show {
+            opacity: 1;
+        }
+
+        /* Ajustes específicos para dispositivos móviles */
+        @media (max-width: 768px) {
+            .content {
+                padding: 10px;
+                max-width: 95%;
+            }
+
+            h1 {
+                font-size: 1em;
+            }
+
+            p {
+                font-size: 0.85em;
+            }
+        }
+
+        /* Ajustes para pantallas grandes */
+        @media (min-width: 1200px) {
+            .content {
+                max-width: 600px;
+                width: auto;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="video-background">
@@ -13,13 +72,23 @@
             Tu navegador no soporta el video.
         </video>
     </div>
-    <div class="content">
+    <div class="content" id="content">
         <h1>Visión</h1>
         <p>"Transformar lo cotidiano en extraordinario a través de la magia del momento. Imaginamos un mundo donde cada experiencia está envuelta en un toque de misterio y encanto, creando recuerdos que perduran y despiertan emociones."</p>
         <h1>Misión</h1>
         <p>"Nuestro propósito es elevar lo efímero a lo memorable, ofreciendo experiencias que encienden la imaginación y desafían la rutina. Nos dedicamos a crear ambientes únicos que capturan la esencia del instante, llevando a nuestros clientes a un viaje sensorial inolvidable."</p>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var video = document.getElementById('bg-video');
+            var content = document.getElementById('content');
+
+            // Espera a que el video esté completamente cargado
+            video.addEventListener('canplaythrough', function () {
+                // Mostrar el contenido con el efecto de disolver
+                content.classList.add('show');
+            });
+        });
+    </script>
 </body>
 </html>
-
-
