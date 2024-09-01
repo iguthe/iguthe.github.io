@@ -32,40 +32,49 @@
     transform: translate(-50%, -50%);
     text-align: center;
     color: white;
-    padding: 10px 20px;
-    background: rgba(0, 0, 0, 0.6); /* Fondo translúcido para mejorar la legibilidad */
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7); /* Fondo translúcido para mejorar la legibilidad */
     border-radius: 8px;
-    max-width: 90%; /* Ajustar ancho máximo del contenedor */
-    width: 100%;
+    max-width: 80%; /* Ajustar ancho máximo del contenedor */
+    width: 100%; /* Asegurar que el contenedor use todo el ancho disponible hasta el máximo permitido */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* Añadir sombra para contraste */
 }
 
 /* Estilo del texto */
 h1 {
-    font-size: 1.5em; /* Tamaño más pequeño para un estilo más minimalista */
+    font-size: 1.2em; /* Tamaño más pequeño */
     font-weight: 300; /* Fuente más delgada */
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 p {
-    font-size: 1em; /* Tamaño más pequeño para un estilo más minimalista */
+    font-size: 0.9em; /* Tamaño más pequeño */
     line-height: 1.4;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-weight: 300; /* Fuente más delgada */
 }
 
 /* Ajustes específicos para dispositivos móviles */
 @media (max-width: 768px) {
     .content {
-        padding: 10px; /* Ajustar padding en pantallas pequeñas */
-        max-width: 90%; /* Asegurar que el contenedor no sea demasiado ancho */
+        padding: 10px;
+        max-width: 95%; /* Ajustar ancho máximo en pantallas pequeñas */
     }
 
     h1 {
-        font-size: 1.2em; /* Tamaño del texto en dispositivos móviles */
+        font-size: 1em; /* Tamaño del texto en dispositivos móviles */
     }
 
     p {
-        font-size: 0.9em; /* Tamaño del texto en dispositivos móviles */
+        font-size: 0.85em; /* Tamaño del texto en dispositivos móviles */
+    }
+}
+
+/* Ajustes para pantallas grandes */
+@media (min-width: 1200px) {
+    .content {
+        max-width: 600px; /* Ancho máximo específico para pantallas grandes */
+        width: auto; /* Ajustar el ancho automáticamente */
     }
 }
 
