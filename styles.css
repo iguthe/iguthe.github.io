@@ -34,7 +34,7 @@
     padding: 20px;
     background: rgba(0, 0, 0, 0.7); /* Fondo translúcido para mejorar la legibilidad */
     border-radius: 8px;
-    max-width: 80%; /* Ajustar ancho máximo del contenedor */
+    max-width: 50%; /* Ajustar ancho máximo del contenedor */
     width: auto; /* Ajustar el ancho automáticamente */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* Añadir sombra para contraste */
     opacity: 0; /* Inicialmente oculto */
@@ -64,7 +64,7 @@ p {
 @media (max-width: 768px) {
     .content {
         padding: 10px;
-        max-width: 50%; /* Ajustar ancho máximo en pantallas pequeñas */
+        max-width: 95%; /* Ajustar ancho máximo en pantallas pequeñas */
     }
 
     h1 {
