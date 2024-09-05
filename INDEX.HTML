@@ -8,7 +8,7 @@
     <style>
         /* Estilo para evitar interacción con el video */
         #bg-video {
-            pointer-events: none; /* Desactiva la interacción del puntero con el video */
+            pointer-events: none;
             position: absolute;
             top: 0;
             left: 0;
@@ -31,16 +31,14 @@
             max-width: 80%;
             width: auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-            opacity: 0; /* Inicialmente oculto */
-            transition: opacity 2s ease-in-out; /* Efecto de disolver */
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
 
-        /* Animación cuando el contenido aparece */
         .content.show {
             opacity: 1;
         }
 
-        /* Ajustes específicos para dispositivos móviles */
         @media (max-width: 768px) {
             .content {
                 padding: 10px;
@@ -56,7 +54,6 @@
             }
         }
 
-        /* Ajustes para pantallas grandes */
         @media (min-width: 1200px) {
             .content {
                 max-width: 600px;
@@ -78,10 +75,10 @@
         <h1>Misión</h1>
         <p>"Nuestro propósito es elevar lo efímero a lo memorable, ofreciendo experiencias que encienden la imaginación y desafían la rutina. Nos dedicamos a crear ambientes únicos que capturan la esencia del instante, llevando a nuestros clientes a un viaje sensorial inolvidable."</p>
     </div>
-    
+
     <!-- Música de fondo -->
-    <audio id="background-music" autoplay loop>
-        <source src="iguthe.github.io/raw/main/Hi.mp3" type="audio/mpeg">
+    <audio id="background-music">
+        <source src="https://nachflix.com/assets/Hi.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
@@ -97,10 +94,19 @@
                 content.classList.add('show');
             });
 
-            // Asegúrate de que la música de fondo se reproduzca automáticamente si es permitido
-            audio.play().catch(function(error) {
-                console.log('No se pudo reproducir la música de fondo:', error);
-            });
+            // Reproduce la música cuando el usuario haga clic o toque en cualquier parte del documento
+            function playMusic() {
+                audio.play().catch(function(error) {
+                    console.log('No se pudo reproducir la música de fondo:', error);
+                });
+                // Eliminar los event listeners después de la primera interacción
+                document.removeEventListener('click', playMusic);
+                document.removeEventListener('touchstart', playMusic);
+            }
+
+            // Agregar event listeners para clic y toque
+            document.addEventListener('click', playMusic);
+            document.addEventListener('touchstart', playMusic);
         });
     </script>
 </body>
