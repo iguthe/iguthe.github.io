@@ -63,12 +63,15 @@
     </style>
 </head>
 <body>
+    <!-- Video de fondo -->
     <div class="video-background">
         <video autoplay muted loop id="bg-video">
-            <source src="https://github.com/iguthe/iguthe.github.io/raw/main/video.mp4" type="video/mp4">
+            <source src="https://github.com/iguthe/iguthe.github.io/raw/main/mcat.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
     </div>
+
+    <!-- Contenido principal -->
     <div class="content" id="content">
         <h1>Visión</h1>
         <p>"Transformar lo cotidiano en extraordinario a través de la magia del momento. Imaginamos un mundo donde cada experiencia está envuelta en un toque de misterio y encanto, creando recuerdos que perduran y despiertan emociones."</p>
@@ -82,6 +85,7 @@
         Tu navegador no soporta el elemento de audio.
     </audio>
 
+    <!-- Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var video = document.getElementById('bg-video');
@@ -95,18 +99,18 @@
             });
 
             // Reproduce la música cuando el usuario haga clic o toque en cualquier parte del documento
-            function playMusic() {
+            function playMedia() {
                 audio.play().catch(function(error) {
                     console.log('No se pudo reproducir la música de fondo:', error);
                 });
                 // Eliminar los event listeners después de la primera interacción
-                document.removeEventListener('click', playMusic);
-                document.removeEventListener('touchstart', playMusic);
+                document.removeEventListener('click', playMedia);
+                document.removeEventListener('touchstart', playMedia);
             }
 
             // Agregar event listeners para clic y toque
-            document.addEventListener('click', playMusic);
-            document.addEventListener('touchstart', playMusic);
+            document.addEventListener('click', playMedia);
+            document.addEventListener('touchstart', playMedia);
         });
     </script>
 </body>
