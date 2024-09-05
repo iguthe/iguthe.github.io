@@ -9,6 +9,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select: none; /* Deshabilitar la selección de texto */
+        }
+
+        body {
+            overflow: hidden; /* Evitar el desplazamiento de la página */
         }
 
         .video-background {
@@ -25,6 +30,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            pointer-events: none; /* Desactiva la interacción del puntero con el video */
         }
 
         #center-video {
@@ -37,6 +43,7 @@
             width: auto;
             height: auto;
             z-index: -1;
+            pointer-events: none; /* Desactiva la interacción del puntero con el video */
         }
 
         #background-music {
@@ -117,6 +124,11 @@
 
             playButton.addEventListener('click', function() {
                 playMedia();
+            });
+
+            // Desactivar clic derecho
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
             });
         });
     </script>
