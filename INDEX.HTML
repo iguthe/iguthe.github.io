@@ -44,6 +44,28 @@
         #background-music {
             display: none;
         }
+
+        .music-controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .music-controls button {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .music-controls button:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
     </style>
 </head>
 <body>
@@ -64,21 +86,22 @@
         Tu navegador no soporta el elemento de audio.
     </audio>
 
+    <div class="music-controls">
+        <button id="play-button">Reproducir Música</button>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var audio = document.getElementById('background-music');
+            var playButton = document.getElementById('play-button');
 
-            function playMedia() {
+            playButton.addEventListener('click', function() {
                 audio.play().catch(function(error) {
                     console.log('No se pudo reproducir la música de fondo:', error);
                 });
-                document.removeEventListener('click', playMedia);
-                document.removeEventListener('touchstart', playMedia);
-            }
-
-            document.addEventListener('click', playMedia);
-            document.addEventListener('touchstart', playMedia);
+            });
         });
     </script>
 </body>
 </html>
+
