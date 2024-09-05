@@ -30,7 +30,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            pointer-events: none; /* Desactiva la interacción del puntero con el video */
+            pointer-events: auto; /* Permitir interacción con el puntero */
+            display: none; /* Ocultar inicialmente */
         }
 
         #center-video {
@@ -43,11 +44,12 @@
             width: auto;
             height: auto;
             z-index: -1;
-            pointer-events: none; /* Desactiva la interacción del puntero con el video */
+            pointer-events: auto; /* Permitir interacción con el puntero */
+            display: none; /* Ocultar inicialmente */
         }
 
         #background-music {
-            display: none;
+            display: none; /* Ocultar el elemento de audio */
         }
 
         .music-controls {
@@ -78,13 +80,13 @@
 </head>
 <body>
     <div class="video-background">
-        <video autoplay muted loop id="bg-video">
+        <video id="bg-video">
             <source src="https://github.com/iguthe/iguthe.github.io/raw/main/video.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
     </div>
 
-    <video autoplay muted loop id="center-video">
+    <video id="center-video">
         <source src="https://github.com/iguthe/iguthe.github.io/raw/main/mcat.mp4" type="video/mp4">
         Tu navegador no soporta el video.
     </video>
@@ -100,30 +102,43 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var audio = document.getElementById('background-music');
-            var playButton = document.getElementById('play-button');
             var bgVideo = document.getElementById('bg-video');
             var centerVideo = document.getElementById('center-video');
+            var audio = document.getElementById('background-music');
+            var playButton = document.getElementById('play-button');
 
             function playMedia() {
+                bgVideo.play().catch(function(error) {
+                    console.log('No se pudo reproducir el video de fondo:', error);
+                });
+                centerVideo.play().catch(function(error) {
+                    console.log('No se pudo reproducir el video central:', error);
+                });
                 audio.play().catch(function(error) {
                     console.log('No se pudo reproducir la música de fondo:', error);
                 });
             }
 
             function onUserInteraction() {
+                // Mostrar los videos y el botón de audio
+                bgVideo.style.display = 'block';
+                centerVideo.style.display = 'block';
+                // Reproducir medios
+                playMedia();
+                // Eliminar event listeners después de la interacción
                 document.removeEventListener('click', onUserInteraction);
                 document.removeEventListener('touchstart', onUserInteraction);
-                playMedia();
             }
 
-            bgVideo.addEventListener('mouseover', playMedia);
-            centerVideo.addEventListener('mouseover', playMedia);
+            // Agregar event listeners para clic y toque
             document.addEventListener('click', onUserInteraction);
             document.addEventListener('touchstart', onUserInteraction);
-
+            
             playButton.addEventListener('click', function() {
                 playMedia();
+                // Mostrar los videos y el botón de audio
+                bgVideo.style.display = 'block';
+                centerVideo.style.display = 'block';
             });
 
             // Desactivar clic derecho
@@ -134,6 +149,7 @@
     </script>
 </body>
 </html>
+
 
         
 
