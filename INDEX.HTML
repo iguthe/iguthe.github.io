@@ -101,33 +101,5 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var audio = document.getElementById('background-music');
-            var playButton = document.getElementById('play-button');
-            var bgVideo = document.getElementById('bg-video');
-            var centerVideo = document.getElementById('center-video');
+        
 
-            function playMedia() {
-                audio.play().catch(function(error) {
-                    console.log('No se pudo reproducir la música de fondo:', error);
-                });
-            }
-
-            function onUserInteraction() {
-                document.removeEventListener('click', onUserInteraction);
-                document.removeEventListener('touchstart', onUserInteraction);
-                playMedia();
-            }
-
-            bgVideo.addEventListener('mouseover', playMedia);
-            centerVideo.addEventListener('mouseover', playMedia);
-            document.addEventListener('click', onUserInteraction);
-            document.addEventListener('touchstart', onUserInteraction);
-
-            playButton.addEventListener('click', function() {
-                playMedia();
-            });
-        });
-    </script>
-</body>
-</html>
