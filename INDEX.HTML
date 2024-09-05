@@ -25,7 +25,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            pointer-events: none;
+            pointer-events: auto; /* Permitir la interacción del puntero */
         }
 
         #center-video {
@@ -38,7 +38,7 @@
             width: auto;
             height: auto;
             z-index: -1;
-            pointer-events: none;
+            pointer-events: auto; /* Permitir la interacción del puntero */
         }
 
         #background-music {
@@ -54,17 +54,27 @@
         }
 
         .music-controls button {
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
+            background: rgba(0, 0, 0, 0.3);
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 10px;
+            border-radius: 50%;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 24px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-controls button::before {
+            content: '▶'; /* Símbolo de reproducción */
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            color: white;
         }
 
         .music-controls button:hover {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -87,21 +97,37 @@
     </audio>
 
     <div class="music-controls">
-        <button id="play-button">Reproducir Música</button>
+        <button id="play-button"></button>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var audio = document.getElementById('background-music');
             var playButton = document.getElementById('play-button');
+            var bgVideo = document.getElementById('bg-video');
+            var centerVideo = document.getElementById('center-video');
 
-            playButton.addEventListener('click', function() {
+            function playMedia() {
                 audio.play().catch(function(error) {
                     console.log('No se pudo reproducir la música de fondo:', error);
                 });
+            }
+
+            function onUserInteraction() {
+                document.removeEventListener('click', onUserInteraction);
+                document.removeEventListener('touchstart', onUserInteraction);
+                playMedia();
+            }
+
+            bgVideo.addEventListener('mouseover', playMedia);
+            centerVideo.addEventListener('mouseover', playMedia);
+            document.addEventListener('click', onUserInteraction);
+            document.addEventListener('touchstart', onUserInteraction);
+
+            playButton.addEventListener('click', function() {
+                playMedia();
             });
         });
     </script>
 </body>
 </html>
-
