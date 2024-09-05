@@ -23,65 +23,20 @@
     pointer-events: none; /* Desactiva la interacción del puntero con el video */
 }
 
-/* Estilo del contenido */
-.content {
+/* Video central */
+#center-video {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
-    color: white;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.7); /* Fondo translúcido para mejorar la legibilidad */
-    border-radius: 8px;
-    max-width: 80%; /* Ajustar ancho máximo del contenedor */
-    width: auto; /* Ajustar el ancho automáticamente */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); /* Añadir sombra para contraste */
-    opacity: 0; /* Inicialmente oculto */
-    transition: opacity 4s ease-in-out; /* Efecto de disolver */
+    width: 80%; /* Ajusta el ancho según sea necesario */
+    height: auto; /* Mantiene la proporción del video */
+    z-index: 1; /* Asegura que el video esté sobre el fondo */
+    pointer-events: none; /* Desactiva la interacción del puntero con el video */
 }
 
-/* Animación cuando el contenido aparece */
-.content.show {
-    opacity: 1;
+/* Música de fondo */
+#background-music {
+    display: none; /* Oculta el reproductor de audio */
 }
 
-/* Estilo del texto */
-h1 {
-    font-size: 1.2em; /* Tamaño más pequeño */
-    font-weight: 300; /* Fuente más delgada */
-    margin-bottom: 10px;
-}
-
-p {
-    font-size: 0.9em; /* Tamaño más pequeño */
-    line-height: 1.4;
-    margin-bottom: 20px;
-    font-weight: 300; /* Fuente más delgada */
-}
-
-/* Ajustes específicos para dispositivos móviles */
-@media (max-width: 768px) {
-    .content {
-        padding: 15px;
-        max-width: 90%; /* Ajustar ancho máximo en pantallas pequeñas */
-        max-height: 80vh; /* Altura máxima para mantener la proporción más rectangular */
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.6); /* Sombra ajustada para pantallas móviles */
-    }
-
-    h1 {
-        font-size: 1.1em; /* Tamaño del texto en dispositivos móviles */
-    }
-
-    p {
-        font-size: 0.85em; /* Tamaño del texto en dispositivos móviles */
-    }
-}
-
-/* Ajustes para pantallas grandes */
-@media (min-width: 1200px) {
-    .content {
-        max-width: 600px; /* Ancho máximo específico para pantallas grandes */
-        width: auto; /* Ajustar el ancho automáticamente */
-    }
-}
