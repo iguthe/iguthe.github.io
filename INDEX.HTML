@@ -6,59 +6,46 @@
     <title>Nachflix</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Estilo para evitar interacción con el video */
-        #bg-video {
-            pointer-events: none;
-            position: absolute;
+        /* Resetear márgenes y paddings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fondo del video */
+        .video-background {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            overflow: hidden;
+            z-index: -1;
         }
 
-        /* Estilo inicial para el contenido */
-        .content {
+        #bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ajusta el video para cubrir el área sin distorsión */
+            pointer-events: none; /* Desactiva la interacción del puntero con el video */
+        }
+
+        /* Video central */
+        #center-video {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 8px;
-            max-width: 80%;
-            width: auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
+            width: 80%; /* Ajusta el ancho según sea necesario */
+            height: auto; /* Mantiene la proporción del video */
+            z-index: 1; /* Asegura que el video esté sobre el fondo */
+            pointer-events: none; /* Desactiva la interacción del puntero con el video */
         }
 
-        .content.show {
-            opacity: 1;
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                padding: 10px;
-                max-width: 95%;
-            }
-
-            h1 {
-                font-size: 1em;
-            }
-
-            p {
-                font-size: 0.85em;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .content {
-                max-width: 600px;
-                width: auto;
-            }
+        /* Música de fondo */
+        #background-music {
+            display: none; /* Oculta el reproductor de audio */
         }
     </style>
 </head>
@@ -71,13 +58,11 @@
         </video>
     </div>
 
-    <!-- Contenido principal -->
-    <div class="content" id="content">
-        <h1>Visión</h1>
-        <p>"Transformar lo cotidiano en extraordinario a través de la magia del momento. Imaginamos un mundo donde cada experiencia está envuelta en un toque de misterio y encanto, creando recuerdos que perduran y despiertan emociones."</p>
-        <h1>Misión</h1>
-        <p>"Nuestro propósito es elevar lo efímero a lo memorable, ofreciendo experiencias que encienden la imaginación y desafían la rutina. Nos dedicamos a crear ambientes únicos que capturan la esencia del instante, llevando a nuestros clientes a un viaje sensorial inolvidable."</p>
-    </div>
+    <!-- Video central -->
+    <video autoplay muted loop id="center-video">
+        <source src="https://github.com/iguthe/iguthe.github.io/raw/main/central-video.mp4" type="video/mp4">
+        Tu navegador no soporta el video.
+    </video>
 
     <!-- Música de fondo -->
     <audio id="background-music">
@@ -88,15 +73,7 @@
     <!-- Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var video = document.getElementById('bg-video');
-            var content = document.getElementById('content');
             var audio = document.getElementById('background-music');
-
-            // Espera a que el video esté completamente cargado
-            video.addEventListener('canplaythrough', function () {
-                // Mostrar el contenido con el efecto de disolver
-                content.classList.add('show');
-            });
 
             // Reproduce la música cuando el usuario haga clic o toque en cualquier parte del documento
             function playMedia() {
@@ -115,3 +92,4 @@
     </script>
 </body>
 </html>
+
