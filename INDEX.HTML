@@ -9,11 +9,11 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            user-select: none; /* Deshabilitar la selección de texto */
+            user-select: none;
         }
 
         body {
-            overflow: hidden; /* Evitar el desplazamiento de la página */
+            overflow: hidden;
         }
 
         .video-background {
@@ -24,14 +24,14 @@
             height: 100%;
             overflow: hidden;
             z-index: -2;
-            display: block; /* Asegúrate de que el fondo sea visible */
+            display: block;
         }
 
         #bg-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            pointer-events: none; /* Desactiva la interacción del puntero con el video */
+            pointer-events: none;
         }
 
         #center-video {
@@ -44,13 +44,9 @@
             width: auto;
             height: auto;
             z-index: -1;
-            opacity: 0; /* Inicialmente oculto */
-            transition: opacity 2s ease-in-out; /* Efecto de disolver */
-            display: none; /* Ocultar inicialmente */
-        }
-
-        #background-music {
-            display: none; /* Ocultar el elemento de audio */
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            display: none;
         }
 
         .music-controls {
@@ -59,8 +55,8 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
-            opacity: 0; /* Inicialmente oculto */
-            transition: opacity 2s ease-in-out; /* Efecto de disolver */
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
         }
 
         .music-controls button {
@@ -83,7 +79,7 @@
 </head>
 <body>
     <div class="video-background">
-        <video id="bg-video">
+        <video id="bg-video" autoplay muted>
             <source src="https://github.com/iguthe/iguthe.github.io/raw/main/video.mp4" type="video/mp4">
             Tu navegador no soporta el video.
         </video>
@@ -94,11 +90,6 @@
         Tu navegador no soporta el video.
     </video>
 
-    <audio id="background-music">
-        <source src="https://github.com/iguthe/iguthe.github.io/raw/main/Hi.mp3" type="audio/mpeg">
-        Tu navegador no soporta el elemento de audio.
-    </audio>
-
     <div class="music-controls">
         <button id="play-button">&#9654;</button>
     </div>
@@ -107,55 +98,38 @@
         document.addEventListener('DOMContentLoaded', function () {
             var bgVideo = document.getElementById('bg-video');
             var centerVideo = document.getElementById('center-video');
-            var audio = document.getElementById('background-music');
             var playButton = document.getElementById('play-button');
             var musicControls = document.querySelector('.music-controls');
 
-            // Espera a que el fondo se haya cargado y luego muestra el botón de PLAY
             bgVideo.addEventListener('canplaythrough', function() {
                 setTimeout(function() {
-                    musicControls.style.opacity = '1'; // Mostrar el botón de PLAY
-                }, 3000); // 3 segundos después de que el fondo se cargue
+                    musicControls.style.opacity = '1';
+                }, 3000);
             });
 
             function playMedia() {
-                bgVideo.play().catch(function(error) {
-                    console.log('No se pudo reproducir el video de fondo:', error);
-                });
+                centerVideo.style.display = 'block';
+                centerVideo.style.opacity = '1';
                 centerVideo.play().catch(function(error) {
                     console.log('No se pudo reproducir el video central:', error);
-                });
-                audio.play().catch(function(error) {
-                    console.log('No se pudo reproducir la música de fondo:', error);
                 });
             }
 
             function onUserInteraction() {
-                // Mostrar el video central con efecto de disolver
-                centerVideo.style.display = 'block';
-                centerVideo.style.opacity = '1';
-
-                // Reproducir medios
                 playMedia();
-
-                // Eliminar event listeners después de la interacción
+                musicControls.style.opacity = '0';
                 document.removeEventListener('click', onUserInteraction);
                 document.removeEventListener('touchstart', onUserInteraction);
             }
 
-            // Agregar event listeners para clic y toque
             document.addEventListener('click', onUserInteraction);
             document.addEventListener('touchstart', onUserInteraction);
 
             playButton.addEventListener('click', function() {
                 playMedia();
-                // Mostrar el video central con efecto de disolver
-                centerVideo.style.display = 'block';
-                centerVideo.style.opacity = '1';
-                musicControls.style.opacity = '0'; // Ocultar el botón de PLAY después de hacer clic
+                musicControls.style.opacity = '0';
             });
 
-            // Desactivar clic derecho
             document.addEventListener('contextmenu', function(e) {
                 e.preventDefault();
             });
@@ -163,6 +137,7 @@
     </script>
 </body>
 </html>
+
 
 
 
