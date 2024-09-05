@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nachflix</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
-        /* Resetear márgenes y paddings */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        /* Fondo del video */
         .video-background {
             position: fixed;
             top: 0;
@@ -27,30 +24,27 @@
         #bg-video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Ajusta el video para cubrir el área sin distorsión */
-            pointer-events: none; /* Desactiva la interacción del puntero con el video */
+            object-fit: cover;
+            pointer-events: none;
         }
 
-        /* Video central */
         #center-video {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80%; /* Ajusta el ancho según sea necesario */
-            height: auto; /* Mantiene la proporción del video */
-            z-index: 1; /* Asegura que el video esté sobre el fondo */
-            pointer-events: none; /* Desactiva la interacción del puntero con el video */
+            width: 80%;
+            height: auto;
+            z-index: 1;
+            pointer-events: none;
         }
 
-        /* Música de fondo */
         #background-music {
-            display: none; /* Oculta el reproductor de audio */
+            display: none;
         }
     </style>
 </head>
 <body>
-    <!-- Video de fondo -->
     <div class="video-background">
         <video autoplay muted loop id="bg-video">
             <source src="https://github.com/iguthe/iguthe.github.io/raw/main/mcat.mp4" type="video/mp4">
@@ -58,38 +52,31 @@
         </video>
     </div>
 
-    <!-- Video central -->
     <video autoplay muted loop id="center-video">
-        <source src="https://github.com/iguthe/iguthe.github.io/raw/main/central-video.mp4" type="video/mp4">
+        <source src="https://github.com/iguthe/iguthe.github.io/raw/main/mcat.mp4" type="video/mp4">
         Tu navegador no soporta el video.
     </video>
 
-    <!-- Música de fondo -->
     <audio id="background-music">
         <source src="https://github.com/iguthe/iguthe.github.io/raw/main/Hi.mp3" type="audio/mpeg">
         Tu navegador no soporta el elemento de audio.
     </audio>
 
-    <!-- Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var audio = document.getElementById('background-music');
 
-            // Reproduce la música cuando el usuario haga clic o toque en cualquier parte del documento
             function playMedia() {
                 audio.play().catch(function(error) {
                     console.log('No se pudo reproducir la música de fondo:', error);
                 });
-                // Eliminar los event listeners después de la primera interacción
                 document.removeEventListener('click', playMedia);
                 document.removeEventListener('touchstart', playMedia);
             }
 
-            // Agregar event listeners para clic y toque
             document.addEventListener('click', playMedia);
             document.addEventListener('touchstart', playMedia);
         });
     </script>
 </body>
 </html>
-
