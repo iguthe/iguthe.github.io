@@ -24,14 +24,14 @@
             height: 100%;
             overflow: hidden;
             z-index: -2;
+            display: block; /* Asegúrate de que el fondo sea visible */
         }
 
         #bg-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            pointer-events: auto; /* Permitir interacción con el puntero */
-            display: none; /* Ocultar inicialmente */
+            pointer-events: none; /* Desactiva la interacción del puntero con el video */
         }
 
         #center-video {
@@ -44,7 +44,8 @@
             width: auto;
             height: auto;
             z-index: -1;
-            pointer-events: auto; /* Permitir interacción con el puntero */
+            opacity: 0; /* Inicialmente oculto */
+            transition: opacity 2s ease-in-out; /* Efecto de disolver */
             display: none; /* Ocultar inicialmente */
         }
 
@@ -58,6 +59,8 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 2;
+            opacity: 0; /* Inicialmente oculto */
+            transition: opacity 2s ease-in-out; /* Efecto de disolver */
         }
 
         .music-controls button {
@@ -106,6 +109,14 @@
             var centerVideo = document.getElementById('center-video');
             var audio = document.getElementById('background-music');
             var playButton = document.getElementById('play-button');
+            var musicControls = document.querySelector('.music-controls');
+
+            // Espera a que el fondo se haya cargado y luego muestra el botón de PLAY
+            bgVideo.addEventListener('canplaythrough', function() {
+                setTimeout(function() {
+                    musicControls.style.opacity = '1'; // Mostrar el botón de PLAY
+                }, 3000); // 3 segundos después de que el fondo se cargue
+            });
 
             function playMedia() {
                 bgVideo.play().catch(function(error) {
@@ -120,11 +131,13 @@
             }
 
             function onUserInteraction() {
-                // Mostrar los videos y el botón de audio
-                bgVideo.style.display = 'block';
+                // Mostrar el video central con efecto de disolver
                 centerVideo.style.display = 'block';
+                centerVideo.style.opacity = '1';
+
                 // Reproducir medios
                 playMedia();
+
                 // Eliminar event listeners después de la interacción
                 document.removeEventListener('click', onUserInteraction);
                 document.removeEventListener('touchstart', onUserInteraction);
@@ -133,12 +146,13 @@
             // Agregar event listeners para clic y toque
             document.addEventListener('click', onUserInteraction);
             document.addEventListener('touchstart', onUserInteraction);
-            
+
             playButton.addEventListener('click', function() {
                 playMedia();
-                // Mostrar los videos y el botón de audio
-                bgVideo.style.display = 'block';
+                // Mostrar el video central con efecto de disolver
                 centerVideo.style.display = 'block';
+                centerVideo.style.opacity = '1';
+                musicControls.style.opacity = '0'; // Ocultar el botón de PLAY después de hacer clic
             });
 
             // Desactivar clic derecho
@@ -149,6 +163,7 @@
     </script>
 </body>
 </html>
+
 
 
         
