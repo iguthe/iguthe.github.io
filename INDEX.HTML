@@ -45,7 +45,7 @@
             height: auto;
             z-index: -1;
             opacity: 0;
-            transition: opacity 2s ease-in-out;
+            transition: opacity 1s ease-in-out;
             display: none;
         }
 
@@ -56,7 +56,7 @@
             transform: translateX(-50%);
             z-index: 2;
             opacity: 0;
-            transition: opacity 2s ease-in-out;
+            transition: opacity 1s ease-in-out;
         }
 
         .music-controls button {
@@ -104,7 +104,7 @@
             bgVideo.addEventListener('canplaythrough', function() {
                 setTimeout(function() {
                     musicControls.style.opacity = '1';
-                }, 2000);
+                }, 1000);
             });
 
             function playMedia() {
@@ -137,8 +137,6 @@
     </script>
 </body>
 </html>
-
-
 
         
 
